@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+const dir = path.resolve(__dirname);
+
 ['server', 'client', 'Agents'].forEach((f) => {
-    const exp = require(`${__dirname}/lib/${f}`);
+    const exp = require(`${dir}/lib/${f}`);
 
     const keys = Object.keys(exp);
     for (let i = 0, len = keys.length; i < len; i += 1) {
@@ -12,6 +14,6 @@ const path = require('path');
 
 exports.auth = {};
 
-fs.readdirSync(`${__dirname}/lib/auth`).forEach((f) => {
-    exports.auth[path.basename(f, '.js')] = require(`${__dirname}/lib/auth/${f}`);
+fs.readdirSync(`${dir}/lib/auth`).forEach((f) => {
+    exports.auth[path.basename(f, '.js')] = require(`${dir}/lib/auth/${f}`);
 });
